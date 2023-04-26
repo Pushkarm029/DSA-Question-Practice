@@ -26,9 +26,8 @@ int sqrt(int num){
 }
 
 int main(){
-    cout<<"enter the number = "<<endl;
-    int num;
-    cin>>num;
+    /*cout<<"enter the number = "<<endl;*/
+    int num = 10;
     int value = sqrt(num);
     cout<<value;
 }

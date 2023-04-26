@@ -13,9 +13,9 @@ int func(int a , int b,int ans){
 }
 
 int main(){
-    int a = 3;
-    int b = 1;
-    int c=1;
+    int a = 5;
+    int b = 5;
+    int c = 5;
     int ans = func(a,b,c);
     cout<<ans<<endl;
 }
