@@ -43,10 +43,31 @@ public:
     void insertWord(string word) {
         InsertUtil(word, root);
     }
+
+    bool searchUtil(TrieNode* root, string word){
+        if(word.length()==0){
+            return root->isTerminal;
+        }
+        int index = word[0] - 'A';
+        TrieNode* child;
+        if (root->children[index] != NULL) {
+            child = root->children[index];
+        }
+        else {
+            return false;
+        }
+        return searchtUtil(child, word.substr(1));
+    }
+
+    bool search(string word){
+        return searchUtil(root, word);
+    }
 };
 
 int main() {
     Trie* t = new Trie();
     t->insertWord("abcd");
+    cout<<"Present or Not"<< t->search("abcdw") <<endl;
+    cout<<"Present or Not"<< t->search("abcd") <<endl;
     return 0;
 }
