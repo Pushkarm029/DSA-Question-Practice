@@ -48,7 +48,7 @@ public:
         if(word.length()==0){
             return root->isTerminal;
         }
-        int index = word[0] - 'A';
+        int index = word[0] - 'a';
         TrieNode* child;
         if (root->children[index] != NULL) {
             child = root->children[index];
@@ -56,18 +56,44 @@ public:
         else {
             return false;
         }
-        return searchtUtil(child, word.substr(1));
+        return searchUtil(child, word.substr(1));
     }
 
     bool search(string word){
         return searchUtil(root, word);
+    }
+    void DeleteUtil(TrieNode* root, string word){
+        if(word.length()==0){
+            root->isTerminal = false;
+        }
+        int index = word[0] - 'a';
+        TrieNode* child;
+        if (root->children[index] != NULL) {
+            child = root->children[index];
+        }
+        else {
+            return;
+        }
+        return DeleteUtil(child, word.substr(1));
+    }
+    void Delete(string word){
+        DeleteUtil(root,word);
     }
 };
 
 int main() {
     Trie* t = new Trie();
     t->insertWord("abcd");
-    cout<<"Present or Not"<< t->search("abcdw") <<endl;
-    cout<<"Present or Not"<< t->search("abcd") <<endl;
+    t->insertWord("do");
+    t->insertWord("time");
+    t->insertWord("abot");
+    t->insertWord("xyvc");
+    cout << "Present or Not: " << t->search("abcdw") << endl;
+    cout << "Present or Not: " << t->search("abcd") << endl;
+    cout << "Present or Not: " << t->search("abot") << endl;
+    cout << "Present or Not: " << t->search("do") << endl;
+    cout << "Present or Not: " << t->search("xyvc") << endl;
+    t->Delete("do");
+    cout << "Present or Not: " << t->search("do") << endl;
     return 0;
 }
